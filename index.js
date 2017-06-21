@@ -26,14 +26,17 @@ const todos = [
 
 app.get('/', function(req, res) {
   res.render('index', { todos: todos });
-})
+});
+app.get('/list', function(req, res) {
+  res.render('index', { todos: todos });
+});
 
 app.post('/', function(req, res) {
-  req.checkBody('item', 'Add some text first').notEmpty();
+  req.checkBody('item', 'Add some text first!').notEmpty();
   const errors = req.validationErrors();
   if (errors) {
-    // just return the whole array as a string
-    res.send(errors);
+    // console.log(errors);
+    res.render('index', { errorMessage: errors[0].msg, todos: todos });
   } else {
     todos.push({ id: todos.length, item: req.body.item, completed: false });
     res.render('index', { todos: todos });

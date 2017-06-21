@@ -5,26 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>To Do Express</title>
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,700" rel="stylesheet">
     <link rel="stylesheet" href="static/styles.css">
   </head>
   <body>
-    <h1>To-Do List</h1>
+    <h1>Todo Listerizer</h1>
     <div class="form">
-      <form class="form" action="/" method="post">
-        <input type="text" name="item" placeholder="Add a todo" value="">
-        <input type="submit" name="submit" value="Add">
+      <form class="form" id="add-item" action="/" method="post">
+        <input type="text" name="item" placeholder="Listerize a todo" value="">
+        <button type="submit" form="add-item" name="button">Listerize!</button>
       </form>
     </div>
+    <div>
+      <p class="error-msg">{{errorMessage}}&nbsp;</p>
+    </div>
     <div class="todo-list">
+      <h2>Things Listerized</h2>
       <form class="list" action="/list" method="post">
         <ul>
           {{#todos}}
             <div class="todo-new">
               {{^completed}}
-                <li><button type="submit" id="{{id}}" name="check" value="{{id}}">Mark Complete</button>{{item}}</li>
+                <li><button type="submit" id="{{id}}" name="check" value="{{id}}">Completerate!</button>{{item}}</li>
               {{/completed}}
             </div>
           {{/todos}}
+        </ul>
+        <h2>Things Completerated</h2>
+        <ul>
           {{#todos}}
             <div class="todo-completed">
               {{#completed}}

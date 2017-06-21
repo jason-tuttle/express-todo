@@ -1,0 +1,8 @@
+{
+  "items":
+  [
+    { "id": 0, "item": "Wake up in the morning", "completed": false },
+    { "id": 1, "item": "Take the 8:15 to the city", "completed": false },
+    { "id": 2, "item": "Start your slaving job to get your pay", "completed": false }
+  ]
+}
