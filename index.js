@@ -4,6 +4,18 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const expressValidator = require("express-validator");
 const mustacheExpress = require('mustache-express');
+// hard mode *******************************************************************
+const jsonfile = require('jsonfile');
+const file = './data/list.json';
+const data = [];
+
+jsonfile.readFile(file, function(err, obj) {
+  if (err) {
+    console.log(error);
+  } else {
+    data.concat(obj.items);
+  }
+});
 
 const app = express();
 
@@ -25,10 +37,10 @@ const todos = [
 ];
 
 app.get('/', function(req, res) {
-  res.render('index', { todos: todos });
+  res.render('index', { todos: data });
 });
 app.get('/list', function(req, res) {
-  res.render('index', { todos: todos });
+  res.render('index', { todos: data });
 });
 
 app.post('/', function(req, res) {
@@ -36,16 +48,18 @@ app.post('/', function(req, res) {
   const errors = req.validationErrors();
   if (errors) {
     // console.log(errors);
-    res.render('index', { errorMessage: errors[0].msg, todos: todos });
+    res.render('index', { errorMessage: errors[0].msg, todos: data });
   } else {
-    todos.push({ id: todos.length, item: req.body.item, completed: false });
-    res.render('index', { todos: todos });
+    data.push({ id: data.length, item: req.body.item, completed: false });
+    jsonfile.writeFile(file, data, err => console.log(err));
+    res.render('index', { todos: data });
   }
 });
 
 app.post('/list', function(req, res) {
-  todos[req.body.check].completed = true;
-  res.render('index', { todos: todos });
+  data[req.body.check].completed = true;
+  jsonfile.writeFile(file, data, err => console.log(err));
+  res.render('index', { todos: data });
 });
 
 app.listen(3030, () => console.log('Servin\'...'));
