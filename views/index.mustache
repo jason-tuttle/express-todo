@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>To Do Express</title>
+    <link rel="stylesheet" href="static/styles.css">
+  </head>
+  <body>
+    <h1>To-Do List</h1>
+    <div class="form">
+      <form class="form" action="/" method="post">
+        <input type="text" name="item" placeholder="Add a todo" value="">
+        <input type="submit" name="submit" value="Add">
+      </form>
+    </div>
+    <div class="todo-list">
+      <form class="list" action="/list" method="post">
+        <ul>
+          {{#todos}}
+            <div class="todo-new">
+              {{^completed}}
+                <li><button type="submit" id="{{id}}" name="check" value="{{id}}">Mark Complete</button>{{item}}</li>
+              {{/completed}}
+            </div>
+          {{/todos}}
+          {{#todos}}
+            <div class="todo-completed">
+              {{#completed}}
+                <li><span class="completed-item">{{item}}</span></li>
+              {{/completed}}
+            </div>
+          {{/todos}}
+        </ul>
+      </form>
+
+    </div>
+
+  </body>
+</html>
