@@ -1,1 +1,1 @@
-[{"id":0,"item":"new thing","completed":true},{"id":1,"item":"another","completed":false},{"id":2,"item":"three","completed":false},{"id":3,"item":"Hello ","completed":true}]
+[{"id":0,"item":"new thing","completed":true},{"id":1,"item":"another","completed":true},{"id":2,"item":"three","completed":false},{"id":3,"item":"Hello ","completed":true},{"id":4,"item":"more things","completed":false},{"id":5,"item":"even more","completed":false},{"id":6,"item":"node.js","completed":false}]

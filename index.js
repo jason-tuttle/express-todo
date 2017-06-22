@@ -30,6 +30,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressValidator());
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
+// test data for adventure mode ************************************************
 const todos = [
   { id: 0, item: "Wake up in the morning", completed: false },
   { id: 1, item: "Take the 8:15 to the city", completed: false },
@@ -47,18 +48,18 @@ app.post('/', function(req, res) {
   req.checkBody('item', 'Add some text first!').notEmpty();
   const errors = req.validationErrors();
   if (errors) {
-    // console.log(errors);
+    console.log(errors);
     res.render('index', { errorMessage: errors[0].msg, todos: data });
   } else {
     data.push({ id: data.length, item: req.body.item, completed: false });
-    jsonfile.writeFile(file, data, err => console.log(err));
+    jsonfile.writeFile(file, data, (err) => console.log(err));
     res.render('index', { todos: data });
   }
 });
 
 app.post('/list', function(req, res) {
   data[req.body.check].completed = true;
-  jsonfile.writeFile(file, data, err => console.log(err));
+  jsonfile.writeFile(file, data, (err) => console.log(err));
   res.render('index', { todos: data });
 });
 
