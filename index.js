@@ -7,13 +7,13 @@ const mustacheExpress = require('mustache-express');
 // hard mode *******************************************************************
 const jsonfile = require('jsonfile');
 const file = './data/list.json';
-const data = [];
+let data = [];
 
 jsonfile.readFile(file, function(err, obj) {
   if (err) {
-    console.log(error);
+    console.log(err);
   } else {
-    data.concat(obj.items);
+    data = obj.map((item) => item );
   }
 });
 
